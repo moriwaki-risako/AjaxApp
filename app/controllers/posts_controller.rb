@@ -9,11 +9,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    Post.create(content: params[:content])
-    redirect_to action: :index
+    post = Post.create(content: params[:content], checked: false)
+    # メモ作成時に未読の情報を保存する
+    render json:{ post: post }
     
-    # 旧カリキュラム
-    # Post.create(post_params)  # Post.create()の()には、実際にテーブルに登録したいデータを記載
   end
 
   def checked
